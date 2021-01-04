@@ -46,11 +46,15 @@ else:
 	print('udaje incorected')
 	exit()
 
-#Výběr textu uživatelem zadáním čísel os jedné do tří.
+#Výběr textu uživatelem zadáním čísel od jedné do tří. Kontrola zadaného čísla.
 print('We have 3 texts to be analyzed.')
-number = int(input('Enter a number btw. 1 and 3 to select: '))
+number = input('Enter a number btw. 1 and 3 to select: ')
+if number in ['1', '2', '3']:
+	number = int(number)
+else:
+	print('wrong asignment, repeat !!!')
+	exit()
 print(separator)
-
 #vytvoření proměnné "text" v které bude text podle výběru uživatele.
 text = TEXTS[number - 1]
 print(f'You choose this text:\n {text}' )
@@ -95,8 +99,10 @@ for chart_word in clear_list:
 		chart[len(chart_word)] = 1
 	else:
 		chart[len(chart_word)] += 1
-for slovo, cislo in chart.items():
-	print(slovo, '*' * cislo, cislo)
+
+cetnost = sorted(chart, key=chart.get)
+for slovo in cetnost:
+    print(f'{slovo}{chart.get(slovo) * "*"}{chart.get(slovo)}')
 
 #Součet všech čísel ve vybraném textu.
 print(separator)
